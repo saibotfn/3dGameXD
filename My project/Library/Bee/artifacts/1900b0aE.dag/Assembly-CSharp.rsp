@@ -432,6 +432,7 @@
 "Assets/Scripts/PauseMenu.cs"
 "Assets/Scripts/PlayerMovement.cs"
 "Assets/Scripts/WorldGeneration/Cell.cs"
+"Assets/Scripts/WorldGeneration/Room.cs"
 "Assets/Scripts/WorldGeneration/Tile.cs"
 "Assets/Scripts/WorldGeneration/TileGenerator.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"

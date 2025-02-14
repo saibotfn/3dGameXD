@@ -2,30 +2,41 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
     public Tile[] possibleTiles;
     public Tile tile;
+    [SerializeField] private Tile airTile;
+    [SerializeField] private Tile floorTile;
 
-    public void collapse()
+    public void collapse(string state)
     {
-        //Debug.Log(possibleTiles.Length);
-
-        if (possibleTiles.Length == 0)
+        if (state == "air") //Sets Cell to air tile
         {
-            //Quaternion rot = Quaternion.Euler(0, tile.yRotation, 0);
-            //Instantiate(tile, new Vector3(transform.localPosition.x, 0, transform.localPosition.z), rot);
+            Instantiate(airTile, new Vector3(transform.localPosition.x, 0, transform.localPosition.z), Quaternion.identity);
+            tile = airTile;
+        }
+        else if (state == "floor") //Sets Cell to floor tile
+        {
+            Instantiate(floorTile, new Vector3(transform.localPosition.x, 0, transform.localPosition.z), Quaternion.identity);
+            tile = floorTile;
         }
         else
         {
-            int randomIndex = UnityEngine.Random.Range(0, possibleTiles.Length); //Pick random index from possible tiles
-            //Quaternion rot = Quaternion.Euler(0, possibleTiles[randomIndex].yRotation, 0); //Create a quaternion for the Gameobject
-            Instantiate(possibleTiles[randomIndex], new Vector3(transform.localPosition.x, 0, transform.localPosition.z), Quaternion.identity); //Instantiate the random gameobject from possible tiles
-            
-            tile = possibleTiles[randomIndex]; //Sets current tile to the chosen tile
+            if (possibleTiles.Length == 0)
+            {
+                Instantiate(floorTile, new Vector3(transform.localPosition.x, 0, transform.localPosition.z), Quaternion.identity);
+                tile = floorTile;
+            }
+            else
+            {
+                int randomIndex = UnityEngine.Random.Range(0, possibleTiles.Length); //Pick random index from possible tiles
+                Instantiate(possibleTiles[randomIndex], new Vector3(transform.localPosition.x, 0, transform.localPosition.z), Quaternion.identity); //Instantiate the random gameobject from possible tiles
+
+                tile = possibleTiles[randomIndex]; //Sets current tile to the chosen tile
+            }
         }
     }
 

@@ -60,4 +60,6 @@ MonoBehaviour:
   - {fileID: 3693391004663987056, guid: 9437a57bfd1e20e409ae474ad1613d09, type: 3}
   - {fileID: -8973308029949919919, guid: 4b2e331c8a805c14eb3a1fa5a2f5de57, type: 3}
   - {fileID: -2606281711098404484, guid: c6cdd691d5f31314a97398e9ee8812c6, type: 3}
-  tile: {fileID: -2606281711098404484, guid: c6cdd691d5f31314a97398e9ee8812c6, type: 3}
+  tile: {fileID: 0}
+  airTile: {fileID: -2606281711098404484, guid: c6cdd691d5f31314a97398e9ee8812c6, type: 3}
+  floorTile: {fileID: 1222822535524803525, guid: 6e0fa4d64f3e67646ab1169e73c39074, type: 3}
