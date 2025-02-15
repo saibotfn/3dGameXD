@@ -10,34 +10,54 @@ public class Cell : MonoBehaviour
     public Tile tile;
     [SerializeField] private Tile airTile;
     [SerializeField] private Tile floorTile;
+    [SerializeField] private Tile UpWall;
+    [SerializeField] private Tile rightWall;
+    [SerializeField] private Tile downWall;
+    [SerializeField] private Tile leftWall;
 
     public void collapse(string state)
     {
-        if (state == "air") //Sets Cell to air tile
+        switch (state)
         {
-            Instantiate(airTile, new Vector3(transform.localPosition.x, 0, transform.localPosition.z), Quaternion.identity);
-            tile = airTile;
-        }
-        else if (state == "floor") //Sets Cell to floor tile
-        {
-            Instantiate(floorTile, new Vector3(transform.localPosition.x, 0, transform.localPosition.z), Quaternion.identity);
-            tile = floorTile;
-        }
-        else
-        {
-            if (possibleTiles.Length == 0)
-            {
+            case "air":
+                Instantiate(airTile, new Vector3(transform.localPosition.x, 0, transform.localPosition.z), Quaternion.identity);
+                tile = airTile;
+                break;
+            case "floor":
                 Instantiate(floorTile, new Vector3(transform.localPosition.x, 0, transform.localPosition.z), Quaternion.identity);
                 tile = floorTile;
-            }
-            else
-            {
-                int randomIndex = UnityEngine.Random.Range(0, possibleTiles.Length); //Pick random index from possible tiles
-                Instantiate(possibleTiles[randomIndex], new Vector3(transform.localPosition.x, 0, transform.localPosition.z), Quaternion.identity); //Instantiate the random gameobject from possible tiles
+                break;
+            case "up":
+                Instantiate(UpWall, new Vector3(transform.localPosition.x, 0, transform.localPosition.z), Quaternion.identity);
+                tile = UpWall;
+                break;
+            case "right":
+                Instantiate(rightWall, new Vector3(transform.localPosition.x, 0, transform.localPosition.z), Quaternion.identity);
+                tile = rightWall;
+                break;
+            case "down":
+                Instantiate(downWall, new Vector3(transform.localPosition.x, 0, transform.localPosition.z), Quaternion.identity);
+                tile = downWall;
+                break;
+            case "left":
+                Instantiate(leftWall, new Vector3(transform.localPosition.x, 0, transform.localPosition.z), Quaternion.identity);
+                tile = leftWall;
+                break;
+            default:
+                if (possibleTiles.Length == 0)
+                {
+                    Instantiate(floorTile, new Vector3(transform.localPosition.x, 0, transform.localPosition.z), Quaternion.identity);
+                    tile = floorTile;
+                }
+                else
+                {
+                    int randomIndex = UnityEngine.Random.Range(0, possibleTiles.Length); //Pick random index from possible tiles
+                    Instantiate(possibleTiles[randomIndex], new Vector3(transform.localPosition.x, 0, transform.localPosition.z), Quaternion.identity); //Instantiate the random gameobject from possible tiles
 
-                tile = possibleTiles[randomIndex]; //Sets current tile to the chosen tile
-            }
-        }
+                    tile = possibleTiles[randomIndex]; //Sets current tile to the chosen tile
+                }
+                break;
+        };
     }
 
     public void reducePossibleTiles(Tile[] inputArray)

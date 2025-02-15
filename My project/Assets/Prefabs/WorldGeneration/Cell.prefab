@@ -63,3 +63,7 @@ MonoBehaviour:
   tile: {fileID: 0}
   airTile: {fileID: -2606281711098404484, guid: c6cdd691d5f31314a97398e9ee8812c6, type: 3}
   floorTile: {fileID: 1222822535524803525, guid: 6e0fa4d64f3e67646ab1169e73c39074, type: 3}
+  UpWall: {fileID: 5729693888257309005, guid: 42524fe357b24324b9e419dc71b27149, type: 3}
+  rightWall: {fileID: -8384895192098316932, guid: b5d3796f918c48441b03fb878997f0cb, type: 3}
+  downWall: {fileID: -4713064597950285474, guid: 0ead24ce93a4ce045bc3805309699ec1, type: 3}
+  leftWall: {fileID: -7072506587516773239, guid: 5f3121cd1df8ef84fb7cc10e12bc1704, type: 3}

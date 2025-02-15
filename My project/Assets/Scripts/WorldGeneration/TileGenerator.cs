@@ -12,7 +12,7 @@ public class TileGenerator : MonoBehaviour
     private List<List<Room>> roomGrid = new List<List<Room>>();
     [SerializeField] private int tileSize;
     List<List<int>> directions = new List<List<int>> { };
-    private bool run = true;
+    [SerializeField] private bool run = true;
 
     void Start()
     {
@@ -28,10 +28,15 @@ public class TileGenerator : MonoBehaviour
         }
         createRooms();
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if (run)
         {
+            if (grid.Count <= 0)
+            {
+                Debug.Log("STOP");
+                run = false;
+            }
             collapseCell();
             if (grid.Count <= 0)
             {
@@ -252,6 +257,8 @@ public class TileGenerator : MonoBehaviour
         {
             grid.Remove(cell);
         }
+
+        generateRoomWalls();
     }
 
     private List<Cell> createPath(Cell cell ,string dir, int depth, List<Cell> maze)
@@ -309,6 +316,55 @@ public class TileGenerator : MonoBehaviour
             };
             if (neighbor)
             {
+                if(depth == (dimensions / 2) + 1)
+                {
+                    foreach(Cell doorNeighbor in grid)
+                    {
+                        if(dir == "Up" || dir == "Down")
+                        {
+                            //Check right
+                            if (doorNeighbor.transform.localPosition.x == neighborCheck.transform.localPosition.x + tileSize)
+                            {
+                                if (doorNeighbor.transform.localPosition.z == neighborCheck.transform.localPosition.z)
+                                {
+                                    doorNeighbor.collapse("right");
+                                    collapseNeighbors(doorNeighbor);
+                                    maze.Add(doorNeighbor);
+                                }
+                            }
+                            //Check Left
+                            else if (doorNeighbor.transform.localPosition.x == neighborCheck.transform.localPosition.x - tileSize)
+                            {
+                                if (doorNeighbor.transform.localPosition.z == neighborCheck.transform.localPosition.z)
+                                {
+                                    doorNeighbor.collapse("left");
+                                    collapseNeighbors(doorNeighbor);
+                                    maze.Add(doorNeighbor);
+                                }
+                            }
+                        }
+                        else if(dir == "Right" || dir == "Left")
+                        {
+                            //Check Up
+                            if (doorNeighbor.transform.localPosition.x == neighborCheck.transform.localPosition.x)
+                            {
+                                if (doorNeighbor.transform.localPosition.z == neighborCheck.transform.localPosition.z + tileSize)
+                                {
+                                    doorNeighbor.collapse("up");
+                                    collapseNeighbors(doorNeighbor);
+                                    maze.Add(doorNeighbor);
+                                }
+                                //Check Down
+                                else if (doorNeighbor.transform.localPosition.z == neighborCheck.transform.localPosition.z - tileSize)
+                                {
+                                    doorNeighbor.collapse("down");
+                                    collapseNeighbors(doorNeighbor);
+                                    maze.Add(doorNeighbor);
+                                }
+                            }
+                        }
+                    }
+                }
                 neighborCheck.collapse("floor");
                 collapseNeighbors(neighborCheck);
             }
@@ -363,6 +419,34 @@ public class TileGenerator : MonoBehaviour
             }
             rooms = generateMaze(rooms, x + X, y + Y, depth + 1);
             possibleDir.RemoveAt(index);
+        }
+    }
+
+    private void generateRoomWalls()
+    {
+        for (int x = 0; x < roomDim; x++)
+        {
+            for (int z = 0; z < roomDim; z++)
+            {
+                List<Cell> cellsToRemove = new List<Cell>();
+                foreach (Cell cell in grid)
+                {
+                    int centerX = (dimensions * (x + 1) + x + 1) * tileSize;
+                    int centerZ = (dimensions * (z + 1) + z + 1) * tileSize;
+
+                    if (cell.transform.localPosition.x == centerX || cell.transform.localPosition.z == centerZ)
+                    {
+                        cellsToRemove.Add(cell);
+                    }
+                }
+
+                foreach(Cell cell in cellsToRemove)
+                {
+                    cell.collapse("air");
+                    collapseNeighbors(cell);
+                    grid.Remove(cell);
+                }
+            }
         }
     }
 }
