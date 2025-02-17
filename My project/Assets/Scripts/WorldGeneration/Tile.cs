@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public Tile[] upNeighbors;
-    public Tile[] rightNeighbors;
-    public Tile[] downNeighbors;
-    public Tile[] leftNeighbors;
+    public int[] upNeighbors;
+    public int[] rightNeighbors;
+    public int[] downNeighbors;
+    public int[] leftNeighbors;
 
     //public int yRotation;
 }

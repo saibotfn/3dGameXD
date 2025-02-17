@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
+    [SerializeField] private int tileSideSize = 3;
     public Tile[] possibleTiles;
     public Tile tile;
     [SerializeField] private Tile airTile;
@@ -60,19 +60,87 @@ public class Cell : MonoBehaviour
         };
     }
 
-    public void reducePossibleTiles(Tile[] inputArray)
+    public void reducePossibleTiles(int[] inputArray, string dir)
     {
-        List<Tile> tempList = new List<Tile>(); //Create a temperary list
-        foreach (Tile tile in possibleTiles) //Goes through all possible tiles
+        List<Tile> matchingTiles = new List<Tile>();
+        bool match = true;
+        if (possibleTiles.Length > 0)
         {
-            if (inputArray.Contains(tile)) //Checks if the give array has the same tile
+            switch (dir)
             {
-                tempList.Add(tile); //Adds the tile to the temperary list
+                case "up":
+                    foreach (Tile tile in possibleTiles)
+                    {
+                        for (int n = 0; n < tileSideSize; n++)
+                        {
+                            if (tile.downNeighbors[n] != inputArray[n])
+                            {
+                                match = false;
+                            }
+                        }
+                        if (match)
+                        {
+                            matchingTiles.Add(tile);
+                        }
+                        match = true;
+                    }
+                    break;
+                case "right":
+                    foreach (Tile tile in possibleTiles)
+                    {
+                        for (int n = 0; n < tileSideSize; n++)
+                        {
+                            if (tile.leftNeighbors[n] != inputArray[n])
+                            {
+                                match = false;
+                            }
+                        }
+                        if (match)
+                        {
+                            matchingTiles.Add(tile);
+                        }
+                        match = true;
+                    }
+                    break;
+                case "down":
+                    foreach (Tile tile in possibleTiles)
+                    {
+                        for (int n = 0; n < tileSideSize; n++)
+                        {
+                            if (tile.upNeighbors[n] != inputArray[n])
+                            {
+                                match = false;
+                            }
+                        }
+                        if (match)
+                        {
+                            matchingTiles.Add(tile);
+                        }
+                        match = true;
+                    }
+                    break;
+                case "left":
+                    foreach (Tile tile in possibleTiles)
+                    {
+                        for (int n = 0; n < tileSideSize; n++)
+                        {
+                            if (tile.rightNeighbors[n] != inputArray[n])
+                            {
+                                match = false;
+                            }
+                        }
+                        if (match)
+                        {
+                            matchingTiles.Add(tile);
+                        }
+                        match = true;
+                    }
+                    break;
             }
         }
 
         int i = 0; //Create an index at 0
-        foreach (Tile tile in tempList.ToArray()) //Goes through all the matching tiles
+        foreach (Tile tile in matchingTiles.ToArray()) //Goes through all the matching tiles
         {
             possibleTiles[i] = tile; //Sets the possible tiles to the matching tiles
             i++;

@@ -80,13 +80,13 @@ public class TileGenerator : MonoBehaviour
             {
                 if (neighborCheck.transform.localPosition.z == collapsedCell.transform.localPosition.z + tileSize)
                 {
-                    neighborCheck.reducePossibleTiles(collapsedCell.tile.upNeighbors); //Call reduce method on the neighbor
+                    neighborCheck.reducePossibleTiles(collapsedCell.tile.upNeighbors, "up"); //Call reduce method on the neighbor
                 }
 
                 //Down
                 else if (neighborCheck.transform.localPosition.z == collapsedCell.transform.localPosition.z - tileSize)
                 {
-                    neighborCheck.reducePossibleTiles(collapsedCell.tile.downNeighbors);
+                    neighborCheck.reducePossibleTiles(collapsedCell.tile.downNeighbors, "down");
                 }
             }
 
@@ -95,7 +95,7 @@ public class TileGenerator : MonoBehaviour
             {
                 if (neighborCheck.transform.localPosition.z == collapsedCell.transform.localPosition.z)
                 {
-                    neighborCheck.reducePossibleTiles(collapsedCell.tile.rightNeighbors);
+                    neighborCheck.reducePossibleTiles(collapsedCell.tile.rightNeighbors, "right");
                 }
             }
 
@@ -104,7 +104,7 @@ public class TileGenerator : MonoBehaviour
             {
                 if (neighborCheck.transform.localPosition.z == collapsedCell.transform.localPosition.z)
                 {
-                    neighborCheck.reducePossibleTiles(collapsedCell.tile.leftNeighbors);
+                    neighborCheck.reducePossibleTiles(collapsedCell.tile.leftNeighbors, "left");
                 }
             }
 

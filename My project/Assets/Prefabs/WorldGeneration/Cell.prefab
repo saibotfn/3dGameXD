@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleTiles:
+  - {fileID: -2606281711098404484, guid: c6cdd691d5f31314a97398e9ee8812c6, type: 3}
   - {fileID: -4713064597950285474, guid: 0ead24ce93a4ce045bc3805309699ec1, type: 3}
   - {fileID: 4323062107743631990, guid: 40266d4cb14d3694ca4b658773faf4e3, type: 3}
   - {fileID: -7320602497707739124, guid: 0602c37b7fc96ca43bebc949d43cebd5, type: 3}
@@ -59,7 +60,6 @@ MonoBehaviour:
   - {fileID: -1014576201515399150, guid: fe637df8479666546b0131208ee42b57, type: 3}
   - {fileID: 3693391004663987056, guid: 9437a57bfd1e20e409ae474ad1613d09, type: 3}
   - {fileID: -8973308029949919919, guid: 4b2e331c8a805c14eb3a1fa5a2f5de57, type: 3}
-  - {fileID: -2606281711098404484, guid: c6cdd691d5f31314a97398e9ee8812c6, type: 3}
   tile: {fileID: 0}
   airTile: {fileID: -2606281711098404484, guid: c6cdd691d5f31314a97398e9ee8812c6, type: 3}
   floorTile: {fileID: 1222822535524803525, guid: 6e0fa4d64f3e67646ab1169e73c39074, type: 3}
