@@ -377,7 +377,7 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1001 &6384238289398125134
+--- !u!1001 &1829320088
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -391,15 +391,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7072189706931729808, guid: fa77b3d21f60f0f40aaf7c0d46da5540, type: 3}
       propertyPath: run
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7072189706931729808, guid: fa77b3d21f60f0f40aaf7c0d46da5540, type: 3}
       propertyPath: roomDim
-      value: 3
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7072189706931729808, guid: fa77b3d21f60f0f40aaf7c0d46da5540, type: 3}
       propertyPath: dimensions
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7160258279284568432, guid: fa77b3d21f60f0f40aaf7c0d46da5540, type: 3}
       propertyPath: m_LocalPosition.x
@@ -452,4 +452,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 318236076}
   - {fileID: 441604756}
-  - {fileID: 6384238289398125134}
+  - {fileID: 1829320088}
