@@ -13,6 +13,7 @@ public class TileGenerator : MonoBehaviour
     [SerializeField] private int tileSize;
     List<List<int>> directions = new List<List<int>> { };
     [SerializeField] private bool run = true;
+    [SerializeField] private GameObject player;
 
     void Start()
     {
@@ -179,6 +180,7 @@ public class TileGenerator : MonoBehaviour
                         
                         if (cell.transform.localPosition.x == center && cell.transform.localPosition.z == center)
                         {
+                            movePlayer(cell.transform.localPosition);
                             isCenter = true;
                         }
                         
@@ -448,5 +450,10 @@ public class TileGenerator : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void movePlayer(Vector3 pos)
+    {
+        player.transform.localPosition = pos + new Vector3(0,1,0);
     }
 }

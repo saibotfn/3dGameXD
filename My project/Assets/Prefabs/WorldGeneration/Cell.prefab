@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a05779f929d3147977d19b515e8179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileSideSize: 3
   possibleTiles:
   - {fileID: -2606281711098404484, guid: c6cdd691d5f31314a97398e9ee8812c6, type: 3}
   - {fileID: -4713064597950285474, guid: 0ead24ce93a4ce045bc3805309699ec1, type: 3}
@@ -60,6 +61,15 @@ MonoBehaviour:
   - {fileID: -1014576201515399150, guid: fe637df8479666546b0131208ee42b57, type: 3}
   - {fileID: 3693391004663987056, guid: 9437a57bfd1e20e409ae474ad1613d09, type: 3}
   - {fileID: -8973308029949919919, guid: 4b2e331c8a805c14eb3a1fa5a2f5de57, type: 3}
+  - {fileID: 4286144961346563669, guid: e0ae5989010b0ff499727e941f460887, type: 3}
+  - {fileID: 5267152335242093172, guid: 87c708e2cee848643bac3109534c2de2, type: 3}
+  - {fileID: 4100468028253591649, guid: ab99db319f3dc2f4ea4c51a225b0563d, type: 3}
+  - {fileID: -1123077364273259716, guid: d40cacafb0c891246ae1a1900b338fb4, type: 3}
+  - {fileID: -3162796715175033815, guid: 64d441fef79d530468a13d28909784dc, type: 3}
+  - {fileID: 5891620392110009698, guid: b77cd6ae4db84104cb94425943224f2f, type: 3}
+  - {fileID: -3432159163896462881, guid: 5290c110970203a468db8c7e43e308ec, type: 3}
+  - {fileID: 1536864284283225265, guid: 539eb64e19d076744b02a28853196b7a, type: 3}
+  - {fileID: -2458187006138304645, guid: a5e5241efff69df4ca2870cd49a7f526, type: 3}
   tile: {fileID: 0}
   airTile: {fileID: -2606281711098404484, guid: c6cdd691d5f31314a97398e9ee8812c6, type: 3}
   floorTile: {fileID: 1222822535524803525, guid: 6e0fa4d64f3e67646ab1169e73c39074, type: 3}
