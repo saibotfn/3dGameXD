@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         inputActions = new InputSystem_Actions();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -80,6 +82,8 @@ public class PlayerMovement : MonoBehaviour
         inputActions.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         inputActions.Player.Move.canceled += ctx => moveInput = Vector2.zero;
 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         inputActions.Player.Look.performed += ctx => Look(ctx.ReadValue<Vector2>());
         inputActions.Player.Jump.performed += _ => Jump();
     }
