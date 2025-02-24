@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class TileGenerator : MonoBehaviour
@@ -43,6 +44,8 @@ public class TileGenerator : MonoBehaviour
             {
                 Debug.Log("STOP");
                 run = false;
+
+                GetComponent<NavMeshSurface>().BuildNavMesh();
             }
         }
     }
