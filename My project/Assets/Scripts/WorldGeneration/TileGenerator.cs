@@ -16,8 +16,13 @@ public class TileGenerator : MonoBehaviour
     [SerializeField] private bool run = true;
     [SerializeField] private GameObject player;
 
+    private List<Cell> finishedGrid = new List<Cell>();
+
+    [SerializeField] private ObjectSpawner objectSpawner;
     void Start()
     {
+        objectSpawner = GetComponent<ObjectSpawner>();
+
         //Create grid with extra layer of Cell's around rooms
         int gridSize = dimensions * roomDim + roomDim + 1;
         for (int x = 0; x < gridSize; x++) 
@@ -46,6 +51,7 @@ public class TileGenerator : MonoBehaviour
                 run = false;
 
                 GetComponent<NavMeshSurface>().BuildNavMesh();
+                objectSpawner.spawnObjects(finishedGrid, roomGrid, tileSize, dimensions);
             }
         }
     }
@@ -69,7 +75,7 @@ public class TileGenerator : MonoBehaviour
         Cell cellToCollapse = slicedSortedList[randIndex]; //Select the Cell of that index
         cellToCollapse.collapse("none"); //Collapse the chosen Cell
 
-
+        finishedGrid.Add(cellToCollapse);
         grid.Remove(cellToCollapse); //Remove the collapsed cell from the grid
 
         collapseNeighbors(cellToCollapse); //Reduce possible tiles of the collapsed cell's neighbors
@@ -132,6 +138,7 @@ public class TileGenerator : MonoBehaviour
                 {
                     grid[i].collapse("air");
                     collapseNeighbors(grid[i]);
+                    finishedGrid.Add(grid[i]);
                     grid.Remove(grid[i]);
                     anyFound = true;
                     break;
@@ -183,7 +190,6 @@ public class TileGenerator : MonoBehaviour
                         
                         if (cell.transform.localPosition.x == center && cell.transform.localPosition.z == center)
                         {
-                            movePlayer(cell.transform.localPosition);
                             isCenter = true;
                         }
                         
@@ -223,6 +229,11 @@ public class TileGenerator : MonoBehaviour
                     }
                     if (isCenter)
                     {
+                        if (roomGrid[x][y].depth == 0)
+                        {
+                            movePlayer(cell.transform.localPosition);
+                        }
+
                         cell.collapse("floor");
                         collapseNeighbors(cell);
                         cellsToRemove.Add(cell);
@@ -253,6 +264,7 @@ public class TileGenerator : MonoBehaviour
                 }
                 foreach (Cell cell in cellsToRemove)
                 {
+                    finishedGrid.Add(cell);
                     grid.Remove(cell);
                 }
             }
@@ -260,6 +272,7 @@ public class TileGenerator : MonoBehaviour
         
         foreach (Cell cell in cells)
         {
+            finishedGrid.Add(cell);
             grid.Remove(cell);
         }
 
@@ -449,6 +462,7 @@ public class TileGenerator : MonoBehaviour
                 {
                     cell.collapse("air");
                     collapseNeighbors(cell);
+                    finishedGrid.Add(cell);
                     grid.Remove(cell);
                 }
             }
