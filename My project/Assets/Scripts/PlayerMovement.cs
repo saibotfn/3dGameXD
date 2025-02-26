@@ -16,6 +16,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     private Vector2 moveInput;
 
+    [Header("Flight")]
+    public bool isFlying = false;
+    public float fyingSpeed = 10.0f;
+
+
     [Header("Look Settings")]
     public float sensitivity;
     private Vector2 lookInput;
@@ -23,6 +28,9 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("References")]
     public Transform cameraTransform;
+
+
+
 
     private void Awake()
     {
@@ -35,15 +43,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Move();
-        Sprint();
-        ApplyGravity();
+        if (!isFlying)
+        {
+            Move();
+            Sprint();
+            ApplyGravity();
+        }
+        else
+        {
+            MoveFlying();
+        }
+
     }
 
     private void Move()
     {
         Vector3 moveDirection = transform.right * moveInput.x + transform.forward * moveInput.y;
         controller.Move(moveDirection * currentSpeed * Time.deltaTime);
+    }
+
+    private void MoveFlying()
+    {
+        Vector3 moveDirection = cameraTransform.localRotation;
     }
 
     private void Jump()
@@ -92,6 +113,20 @@ public class PlayerMovement : MonoBehaviour
             transform.Rotate(Vector3.up * mouseX);
         }
 
+    }
+
+    public void EnableFlight(bool flyingToggle)
+    {
+        if (flyingToggle == true)
+        {
+            isFlying = flyingToggle;
+            gravity = 0f;
+        }
+        else
+        {
+            isFlying = false;
+            gravity = -9.82f;
+        }
     }
 
     private void OnEnable()
