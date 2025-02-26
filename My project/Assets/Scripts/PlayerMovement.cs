@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5.0f;
     public float jumpHeight = 2.0f;
     public float gravity = -9.81f;
+    public float sprintSpeed = 10f;
+    public int sprintTime = 5;
+    public float currentSpeed;
     private Vector3 velocity;
     private Vector2 moveInput;
 
@@ -27,18 +30,20 @@ public class PlayerMovement : MonoBehaviour
         inputActions = new InputSystem_Actions();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        currentSpeed = moveSpeed;
     }
 
     private void Update()
     {
         Move();
+        Sprint();
         ApplyGravity();
     }
 
     private void Move()
     {
         Vector3 moveDirection = transform.right * moveInput.x + transform.forward * moveInput.y;
-        controller.Move(moveDirection * moveSpeed * Time.deltaTime);
+        controller.Move(moveDirection * currentSpeed * Time.deltaTime);
     }
 
     private void Jump()
@@ -47,6 +52,19 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
+    }
+
+    private void Sprint()
+    {
+        if (Keyboard.current.leftShiftKey.IsPressed())
+        {
+            currentSpeed = sprintSpeed;
+        }
+        else
+        {
+            currentSpeed = moveSpeed;
+        }
+        
     }
 
     private void ApplyGravity()
