@@ -88,12 +88,12 @@
                 },
                 {
                     "name": "FlyingUpDown",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "d81e725b-63a9-42f9-8247-f12870b79f7e",
-                    "expectedControlType": "",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [

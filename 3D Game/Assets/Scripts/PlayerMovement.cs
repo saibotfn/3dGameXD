@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
@@ -18,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Flight")]
     public bool isFlying = false;
-    public float fyingSpeed = 10.0f;
+    public float flyingSpeed = 10.0f;
 
 
     [Header("Look Settings")]
@@ -64,7 +65,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveFlying()
     {
-        Vector3 moveDirection = cameraTransform.localRotation;
+        Vector3 moveDirection = transform.right * moveInput.x + Camera.main.transform.forward * moveInput.y;
+        controller.Move(moveDirection * flyingSpeed * Time.deltaTime);
     }
 
     private void Jump()
@@ -74,6 +76,15 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
     }
+
+    private void FlyUpDown(float moveDirection)
+    {
+        Debug.Log("yo");
+        transform.position += new Vector3(0, moveDirection * flyingSpeed * Time.deltaTime, 0);
+    }
+
+
+
 
     private void Sprint()
     {
@@ -134,6 +145,10 @@ public class PlayerMovement : MonoBehaviour
         inputActions.Enable();
         inputActions.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         inputActions.Player.Move.canceled += ctx => moveInput = Vector2.zero;
+        if (isFlying == true)
+        {
+            inputActions.Player.FlyingUpDown.performed += ctx => FlyUpDown(ctx.ReadValue<float>());
+        }
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
