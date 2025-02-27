@@ -18,7 +18,7 @@ public class TileGenerator : MonoBehaviour
 
     private List<Cell> finishedGrid = new List<Cell>();
 
-    [SerializeField] private ObjectSpawner objectSpawner;
+    private ObjectSpawner objectSpawner;
     void Start()
     {
         objectSpawner = GetComponent<ObjectSpawner>();
@@ -175,7 +175,7 @@ public class TileGenerator : MonoBehaviour
         List<Cell> cells = new List<Cell>(); //Cells to remove from grid after
 
         roomGrid = generateMaze(roomGrid, X, Y, 0);
-        
+
         for (int x = 0; x < roomDim; x++)
         {
             for (int y = 0; y < roomDim; y++)
@@ -255,7 +255,7 @@ public class TileGenerator : MonoBehaviour
                                         cells = createPath(cell, "Down", dimensions, cells);
                                         break;
                                     case 3:
-                                        cells = createPath(cell, "Left", dimensions , cells);
+                                        cells = createPath(cell, "Left", dimensions, cells);
                                         break;
                                 }
                             }
@@ -281,7 +281,7 @@ public class TileGenerator : MonoBehaviour
 
     private List<Cell> createPath(Cell cell ,string dir, int depth, List<Cell> maze)
     {
-        if (depth < 0) return maze;
+        if (depth < 1) return maze;
 
         maze.Add(cell);
 

@@ -23,12 +23,15 @@ public class ObjectSpawner : MonoBehaviour
 
     private void spawnEnemys()
     {
+        bool enemyspawned = false;
         for (int x = 0; x < roomGrid.Count; x++)
         {
             for (int y = 0; y < roomGrid[x].Count; y++)
             {
+                enemyspawned = false;
                 if (roomGrid[x][y].depth != 0)
                 {
+                    
                     foreach (Cell cell in grid)
                     {
                         bool isCenter = false;
@@ -75,11 +78,10 @@ public class ObjectSpawner : MonoBehaviour
                             }
 
                         }
-                        if (isCenter)
+                        if (isCenter && !enemyspawned)
                         {
-                            Debug.Log(x + "," + y);
-                            
                             Instantiate(enemyPrefab, cell.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+                            enemyspawned = true;
                         }
                     }
                 }

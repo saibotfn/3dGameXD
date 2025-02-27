@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UR_Corner
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 425f5f4b86e533c47a0e0f64cb2bb2f2, type: 3}
+      propertyPath: m_TagString
+      value: Object
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
