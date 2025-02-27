@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
@@ -10,8 +11,16 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5.0f;
     public float jumpHeight = 2.0f;
     public float gravity = -9.81f;
+    public float sprintSpeed = 10f;
+    public int sprintTime = 5;
+    public float currentSpeed;
     private Vector3 velocity;
     private Vector2 moveInput;
+
+    [Header("Flight")]
+    public bool isFlying = false;
+    public float flyingSpeed = 10.0f;
+
 
     [Header("Look Settings")]
     public float sensitivity;
@@ -21,24 +30,43 @@ public class PlayerMovement : MonoBehaviour
     [Header("References")]
     public Transform cameraTransform;
 
+
+
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         inputActions = new InputSystem_Actions();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        currentSpeed = moveSpeed;
     }
 
     private void Update()
     {
-        Move();
-        ApplyGravity();
+        if (!isFlying)
+        {
+            Move();
+            Sprint();
+            ApplyGravity();
+        }
+        else
+        {
+            MoveFlying();
+        }
+
     }
 
     private void Move()
     {
         Vector3 moveDirection = transform.right * moveInput.x + transform.forward * moveInput.y;
-        controller.Move(moveDirection * moveSpeed * Time.deltaTime);
+        controller.Move(moveDirection * currentSpeed * Time.deltaTime);
+    }
+
+    private void MoveFlying()
+    {
+        Vector3 moveDirection = transform.right * moveInput.x + Camera.main.transform.forward * moveInput.y;
+        controller.Move(moveDirection * flyingSpeed * Time.deltaTime);
     }
 
     private void Jump()
@@ -47,6 +75,28 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
+    }
+
+    private void FlyUpDown(float moveDirection)
+    {
+        Debug.Log("yo");
+        transform.position += new Vector3(0, moveDirection * flyingSpeed * Time.deltaTime, 0);
+    }
+
+
+
+
+    private void Sprint()
+    {
+        if (Keyboard.current.leftShiftKey.IsPressed())
+        {
+            currentSpeed = sprintSpeed;
+        }
+        else
+        {
+            currentSpeed = moveSpeed;
+        }
+        
     }
 
     private void ApplyGravity()
@@ -76,11 +126,29 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void EnableFlight(bool flyingToggle)
+    {
+        if (flyingToggle == true)
+        {
+            isFlying = flyingToggle;
+            gravity = 0f;
+        }
+        else
+        {
+            isFlying = false;
+            gravity = -9.82f;
+        }
+    }
+
     private void OnEnable()
     {
         inputActions.Enable();
         inputActions.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         inputActions.Player.Move.canceled += ctx => moveInput = Vector2.zero;
+        if (isFlying == true)
+        {
+            inputActions.Player.FlyingUpDown.performed += ctx => FlyUpDown(ctx.ReadValue<float>());
+        }
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
