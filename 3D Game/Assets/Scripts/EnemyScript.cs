@@ -5,7 +5,7 @@ public class EnemyScript : MonoBehaviour
 {
     private NavMeshAgent agent;
     private bool inRange = false;
-    [SerializeField] int range = 5;
+    [SerializeField] int range = 10;
 
     Ray ray;
     RaycastHit hit;
@@ -24,12 +24,11 @@ public class EnemyScript : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        ray = new Ray(transform.position, (transform.position - other.transform.position).normalized);
-
+        ray = new Ray(transform.position, other.transform.position - transform.position);
 
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            if(hit.collider.gameObject.tag != "Object")
+            if(hit.collider.gameObject.tag == "Player")
             {
                 if ((transform.position - other.transform.position).magnitude < range)
                 {

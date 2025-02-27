@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 318236077}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -399,7 +399,7 @@ PrefabInstance:
       objectReference: {fileID: 2020208569}
     - target: {fileID: 7072189706931729808, guid: fa77b3d21f60f0f40aaf7c0d46da5540, type: 3}
       propertyPath: roomDim
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7072189706931729808, guid: fa77b3d21f60f0f40aaf7c0d46da5540, type: 3}
       propertyPath: tileSize
@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 2020208576}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -497,6 +497,11 @@ MonoBehaviour:
   moveSpeed: 5
   jumpHeight: 2
   gravity: -9.81
+  sprintSpeed: 10
+  sprintTime: 5
+  currentSpeed: 0
+  isFlying: 0
+  flyingSpeed: 10
   sensitivity: 0
   cameraTransform: {fileID: 318236076}
 --- !u!143 &2020208571
