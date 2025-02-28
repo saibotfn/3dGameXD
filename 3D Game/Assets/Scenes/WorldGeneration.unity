@@ -399,7 +399,7 @@ PrefabInstance:
       objectReference: {fileID: 2020208569}
     - target: {fileID: 7072189706931729808, guid: fa77b3d21f60f0f40aaf7c0d46da5540, type: 3}
       propertyPath: roomDim
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7072189706931729808, guid: fa77b3d21f60f0f40aaf7c0d46da5540, type: 3}
       propertyPath: tileSize
@@ -407,7 +407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7072189706931729808, guid: fa77b3d21f60f0f40aaf7c0d46da5540, type: 3}
       propertyPath: dimensions
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7160258279284568432, guid: fa77b3d21f60f0f40aaf7c0d46da5540, type: 3}
       propertyPath: m_LocalPosition.x
