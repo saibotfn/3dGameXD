@@ -16,9 +16,12 @@ public class Projectile : MonoBehaviour
         transform.position += transform.forward * bulletSpeed * Time.deltaTime;
     }
 
-    void onTriggerEnter(Collider Other)
+    void OnTriggerEnter(Collider Other)
     {
+        if(Other.gameObject.tag == "Enemy") { if (Other.GetType() == typeof(SphereCollider)) return; }
+        
         //do damage
+        Debug.Log(Other.gameObject.name);
         Destroy(gameObject);
     }
 
