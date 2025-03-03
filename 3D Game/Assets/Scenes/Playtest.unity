@@ -1603,6 +1603,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 531424241}
     - target: {fileID: 4539253050599645637, guid: f19ea9f3ef1eadf4ca469b5abaaefc6c, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 1091920972}
+    - target: {fileID: 4539253050599645637, guid: f19ea9f3ef1eadf4ca469b5abaaefc6c, type: 3}
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 6023190336856229224, guid: e78de2f0f0b86b842839cf837b37dade, type: 3}
@@ -2785,11 +2789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881895c781a77fc4ca70a803ce77a152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
   jumpHeight: 2
-  gravity: -9.81
-  sprintSpeed: 10
-  sprintTime: 5
   currentSpeed: 0
   isFlying: 0
   flyingSpeed: 10
@@ -2826,10 +2826,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 1091920964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d76e1bf8f275ba6449d0803afeb38797, type: 3}
+  m_Script: {fileID: 11500000, guid: 81cc6e5d80b125346a511da2dd4e2f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  currentHealth: 3
+  speed: 5
+  maxHealth: 3
+  fireRate: 0.2
+  bulletSpeed: 1
+  sprintSpeed: 10
+  bulletAmount: 2
+  bulletSize: 1
+  lifeSteal: 0
+  critChance: 0
+  critDamage: 1
+  bulletSpread: 0
+  magSize: 1
+  reloadTime: 1
+  baseDamage: 1
+  knockback: 0
+  fire: 0
+  ice: 0
+  poisen: 0
+  bleed: 0
+  lighting: 0
+  death: 0
+  explosion: 0
+  shotgun: 0
+  sniper: 0
+  railgun: 0
+  headShotMuliplier: 1
+  damageReduction: 0
 --- !u!1 &1100031842
 GameObject:
   m_ObjectHideFlags: 0

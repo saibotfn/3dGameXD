@@ -4,12 +4,17 @@ using UnityEngine.InputSystem;
 
 public class PewPew : MonoBehaviour
 {
-    public GameObject bulletPrefab;
-    public Transform firePoint;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private Stats playerStats;
 
-    public float fireRate = 0.2f;
+    private float fireRate;
     private float nextFire = 0;
 
+    private void Start()
+    {
+        fireRate = playerStats.fireRate;
+    }
 
     void FixedUpdate()
     {
@@ -22,11 +27,16 @@ public class PewPew : MonoBehaviour
 
     private void Shoot()
     {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        for (int i = 0; i < playerStats.bulletAmount; i++)
+        {
+            //ADD BULLET SPREAD HEAR --- RANDOM ROTATION APPLIED SKALLING WITH PLAYERSTATS.BULLETSPREAD
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            bullet.GetComponent<Projectile>().bulletSpeed = playerStats.bulletSpeed;
+            bullet.GetComponent<Projectile>().damage = playerStats.baseDamage;
+            bullet.GetComponent<Projectile>().critChance = playerStats.critChance;
+            bullet.GetComponent<Projectile>().critDamage = playerStats.critDamage;
+            bullet.transform.localScale *= playerStats.bulletSize;
+        }
     }
-
-
-
-
 
 }
