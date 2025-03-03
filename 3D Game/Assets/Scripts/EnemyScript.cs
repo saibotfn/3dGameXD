@@ -6,6 +6,7 @@ public class EnemyScript : MonoBehaviour
     private NavMeshAgent agent;
     private bool inRange = false;
     [SerializeField] int range = 10;
+    public GameObject pewPew;
 
     Ray ray;
     RaycastHit hit;
@@ -34,6 +35,8 @@ public class EnemyScript : MonoBehaviour
                 {
                     inRange = true;
                     agent.isStopped = true;
+                    GetComponent<PewPew>().Shoot();
+                    Debug.Log("enemy go pewpew");
                 }
                 else
                 {
