@@ -35,9 +35,9 @@ public class Projectile : MonoBehaviour
             }
             
         }
-        if(Other.gameObject.tag == "Projectile") return;
-        
-        Debug.Log(Other.gameObject.tag);
+        if (Other.gameObject.name == "Bullet") return;
+        if (Other.gameObject.name == "Bullet(Clone)") return;
+
         Destroy(gameObject);
     }
 

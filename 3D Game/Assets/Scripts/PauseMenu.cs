@@ -10,6 +10,8 @@ public class PauseMenu : MonoBehaviour
     private GameObject pauseMenuUI;
     [SerializeField]
     private GameObject settingsMenuUI;
+    [SerializeField]
+    private GameObject crossairUI;
     public Slider sensitivitySlider;
     public Slider volumeSlider;
     private bool isPaused = false;
@@ -43,6 +45,7 @@ public class PauseMenu : MonoBehaviour
     {
         settingsMenuUI.SetActive(isPaused);
         pauseMenuUI.SetActive(true);
+        crossairUI.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
@@ -52,6 +55,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        crossairUI.SetActive(true);
         Time.timeScale = 1f;
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;

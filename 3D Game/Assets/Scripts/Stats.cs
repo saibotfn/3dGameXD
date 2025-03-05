@@ -9,14 +9,13 @@ public class Stats : MonoBehaviour
     public float fireRate; //Done
     public float bulletSpeed; //Done
     public float sprintSpeed; //Done
-    public float bulletAmount; //Done ish
+    public float bulletAmount; //Done
     public float bulletSize; //Done
-    public float lifeSteal;
     public float critChance; //Done
     public float critDamage; //Done
-    public float bulletSpread;
-    public float magSize;
-    public float reloadTime;
+    public float bulletSpread; //Done
+    public float magSize; //Done
+    public float reloadTime; //Done
     public float baseDamage; //Done
 
     [Header("Bullet effekts")]
@@ -33,11 +32,15 @@ public class Stats : MonoBehaviour
     public bool shotgun;
     public bool sniper;
     public bool railgun;
+    public bool lifeSteal;
 
     [Header("Extra item effeks or stats")]
     public float headShotMuliplier;
     public float damageReduction;
 
-
+    private void Start()
+    {
+        currentHealth = maxHealth;
+    }
 
 }
