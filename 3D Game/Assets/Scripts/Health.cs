@@ -2,18 +2,14 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int health = 10;
+    [SerializeField] private float health = 10;
 
-    private void OnCollisionEnter(Collision collision)
+    public void reduceHealth(float amount)
     {
-        Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.tag != "Projectile") return;
-        Debug.Log("Hit");
-        health--;
-
-        if (health <= 0)
+        health -= amount;
+        if(health <= 0)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

@@ -449,7 +449,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8874676432982169126, guid: fa77b3d21f60f0f40aaf7c0d46da5540, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -494,11 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881895c781a77fc4ca70a803ce77a152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
   jumpHeight: 2
-  gravity: -9.81
-  sprintSpeed: 10
-  sprintTime: 5
   currentSpeed: 0
   isFlying: 0
   flyingSpeed: 10

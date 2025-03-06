@@ -6,13 +6,13 @@ public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
     private InputSystem_Actions inputActions;
+    private Stats playerStats;
 
     [Header("Movement Settings")]
-    public float moveSpeed = 5.0f;
-    public float jumpHeight = 2.0f;
-    public float gravity = -9.81f;
-    public float sprintSpeed = 10f;
-    public int sprintTime = 5;
+    private float moveSpeed;
+    [SerializeField] private float jumpHeight = 2.0f;
+    private float gravity = -9.81f;
+    private float sprintSpeed;
     public float currentSpeed;
     private Vector3 velocity;
     private Vector2 moveInput;
@@ -35,11 +35,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        playerStats = GetComponent<Stats>();
         controller = GetComponent<CharacterController>();
         inputActions = new InputSystem_Actions();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         currentSpeed = moveSpeed;
+    }
+
+    private void Start()
+    {
+        moveSpeed = playerStats.speed;
+        sprintSpeed = playerStats.sprintSpeed;
     }
 
     private void Update()
