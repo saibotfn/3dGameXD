@@ -15,6 +15,11 @@ public class Cell : MonoBehaviour
     [SerializeField] private Tile downWall;
     [SerializeField] private Tile leftWall;
 
+    public Cell upCell;
+    public Cell downCell;
+    public Cell leftCell;
+    public Cell rightCell;
+
     public void collapse(string state)
     {
         switch (state)
