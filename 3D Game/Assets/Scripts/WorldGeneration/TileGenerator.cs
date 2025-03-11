@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,12 @@ public class TileGenerator : MonoBehaviour
                 grid.Add(temp.GetComponent<Cell>());
             }
         }
+        DateTime before = DateTime.Now;
         createRooms();
+        DateTime after = DateTime.Now;
+        TimeSpan duration = after.Subtract(before);
+        Debug.Log("Duration in milliseconds: " + duration);
+        
     }
     private void Update()
     {
@@ -472,5 +478,12 @@ public class TileGenerator : MonoBehaviour
     private void movePlayer(Vector3 pos)
     {
         player.transform.localPosition = pos + new Vector3(0,1,0);
+    }
+
+    private List<Cell> setNeighbors(List<Cell> cells)
+    {
+        return cells;
+
+
     }
 }
